@@ -1,0 +1,5 @@
+---
+const {video,audio,locale}=Astro.props;
+---
+{video&&<section class="media"><small>WATCH</small><div class="video"><iframe loading="lazy" src={video.platform==='youtube'?`https://www.youtube.com/embed/${video.id}`:`https://player.vimeo.com/video/${video.id}`} title="UNMTD1 video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></section>}
+{audio&&<section class="media"><small>LISTEN</small><iframe class="audio" loading="lazy" src={audio.url} title={locale==='fr'?'Audio':'Audio'} allow="autoplay"></iframe></section>}

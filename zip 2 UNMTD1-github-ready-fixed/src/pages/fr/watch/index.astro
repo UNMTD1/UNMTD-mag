@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';import Card from '../../../components/Card.astro';import {getEpisodes} from '../../../utils/content';const items=(await getEpisodes()).filter(x=>x.data.video);
+---
+<BaseLayout locale="fr" title="Watch"><section class="head"><div class="container"><div class="eyebrow">WATCH</div><h1 class="display">Watch.</h1></div></section><section class="section"><div class="container"><div class="grid3">{items.map(x=><Card item={x} locale="fr" kind="episode"/>)}</div></div></section></BaseLayout>

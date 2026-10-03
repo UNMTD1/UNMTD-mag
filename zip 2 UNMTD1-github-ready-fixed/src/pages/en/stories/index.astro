@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';import Card from '../../../components/Card.astro';import Search from '../../../components/Search.astro';import {getEpisodes} from '../../../utils/content';const items=await getEpisodes();
+---
+<BaseLayout locale="en" title="All stories"><section class="head"><div class="container"><div class="eyebrow">STORIES</div><h1 class="display">All stories.</h1><p>Interviews, portraits, conversations and stories about women shaping music.</p></div></section><section class="section"><div class="container"><Search locale="en"/><div class="grid3">{items.map(x=><Card item={x} locale="en" kind="episode"/>)}</div></div></section></BaseLayout>

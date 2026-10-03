@@ -1,0 +1,5 @@
+---
+import {episodePath,seriesPath,personPath,formatDate} from '../utils/content';import type {Locale} from '../data/site';
+const {item,locale,kind}=Astro.props;const d=item.data;const href=kind==='episode'?episodePath(locale,item):kind==='series'?seriesPath(locale,item):personPath(locale,item);const title=kind==='person'?d.name:d.title[locale];
+---
+<article class="card"><a class="thumb" href={href}>{d.image?<img src={d.image} alt="" loading="lazy"/>:<span>UNMTD1</span>}</a><div class="cardbody">{kind==='episode'&&<small>{d.series} · {String(d.episode).padStart(2,'0')} · {formatDate(d.date,locale)}</small>}{kind==='series'&&<small>SERIES {String(d.number).padStart(3,'0')}</small>}<h3><a href={href}>{title}</a></h3>{kind==='episode'&&<p>{d.excerpt[locale]}</p>}{kind==='series'&&<p>{d.description[locale]}</p>}{kind==='person'&&<p>{d.role.join(' · ')}{d.location?` · ${d.location}`:''}</p>}<a class="more" href={href}>{locale==='fr'?'Découvrir':'Explore'} ↗</a></div></article>

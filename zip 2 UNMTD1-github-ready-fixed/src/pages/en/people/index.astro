@@ -1,0 +1,4 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';import Card from '../../../components/Card.astro';import {getPeople} from '../../../utils/content';const items=await getPeople();
+---
+<BaseLayout locale="en" title="People"><section class="head"><div class="container"><div class="eyebrow">PEOPLE</div><h1 class="display">People.</h1></div></section><section class="section"><div class="container"><div class="grid3">{items.map(x=><Card item={x} locale="en" kind="person"/>)}</div></div></section></BaseLayout>

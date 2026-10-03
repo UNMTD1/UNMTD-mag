@@ -1,0 +1,7 @@
+import {defineCollection,z} from 'astro:content';
+import {glob} from 'astro/loaders';
+const loc=z.object({fr:z.string(),en:z.string()});
+const episodes=defineCollection({loader:glob({pattern:'**/*.md',base:'./src/content/episodes'}),schema:z.object({title:loc,excerpt:loc,description:loc.optional(),date:z.coerce.date(),series:z.string(),episode:z.number().int().positive(),person:z.string().optional(),author:z.string().default('UNMTD1'),type:z.string().default('interview'),categories:z.array(z.string()).default([]),tags:z.array(z.string()).default([]),image:z.string().optional(),imageAlt:loc.optional(),video:z.object({platform:z.enum(['youtube','vimeo']),id:z.string()}).optional(),audio:z.object({platform:z.enum(['soundcloud','spotify']),url:z.string()}).optional(),featured:z.boolean().default(false),draft:z.boolean().default(false)})});
+const series=defineCollection({loader:glob({pattern:'**/*.md',base:'./src/content/series'}),schema:z.object({title:loc,description:loc,number:z.number().int(),theme:z.string(),status:z.enum(['current','complete','upcoming']).default('current'),image:z.string().optional()})});
+const people=defineCollection({loader:glob({pattern:'**/*.md',base:'./src/content/people'}),schema:z.object({name:z.string(),role:z.array(z.string()),location:z.string().optional(),genres:z.array(z.string()).default([]),bio:loc,image:z.string().optional(),imageAlt:loc.optional(),featured:z.boolean().default(false)})});
+export const collections={episodes,series,people};
